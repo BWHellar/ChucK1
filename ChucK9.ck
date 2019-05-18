@@ -22,8 +22,13 @@ arrayA[1] => int data;
 66 => arrayA[1]; arrayA[1] => int data1;
 <<<data1>>>;
 
+
+[.5,.2,.5,.1,.9,.7] @=> float notes[];
+
+
 // Array Looping
 SinOsc s=> dac;
+SinOsc m=>dac;
 
 [100,200,300,400,500,600,700,800] @=> int arrayC[];
 // This lets you know how many elements in the array.
@@ -34,5 +39,6 @@ for (0=> int i; i< arrayC.cap();i++)
     // Since we are pushing an array into a SinOsc we are able to run through the array as a freq instead of just console logging numbers.
     <<<i, arrayC[i]>>>;
     Std.mtof(arrayC[i]) => s.freq;
-    .5::second=> now;
+    Std.mtof(arrayB[i]) => m.freq;
+    notes[i]::second => now;
 }
